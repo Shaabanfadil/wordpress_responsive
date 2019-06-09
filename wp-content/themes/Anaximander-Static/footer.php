@@ -16,7 +16,7 @@
 				<p>
 				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'anaximander' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'anaximander' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'anaximander' ), 'WordPress' ); ?></a>
 				<span class="sep"> | </span>
-				<?php printf( __( 'Theme: %1$s by %2$s.', 'anaximander' ), 'anaximander', '<a href="http://pinkandyellow.com/" rel="nofollow">Pink &amp; Yellow Media</a>' ); ?>
+				<?php printf( __( 'Theme: %1$s by %2$s.', 'anaximander' ), 'anaximander', '<a href="http://shaabanfadil.bythost.com/" rel="nofollow">Shaaban Fadil</a>' ); ?>
 				</p>
 
 			</div>

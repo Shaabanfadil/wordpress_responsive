@@ -1,5 +1,38 @@
 <?php
 
+function university_files() {
+	wp_enqueue_script('main-university-js', get_theme_file_uri('/js/scripts-bundled.js'), NULL, '1.0', true);
+	wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+	wp_enqueue_style('university_main_styles', get_stylesheet_uri(), NULL, microtime());
+  }
+  
+  add_action('wp_enqueue_scripts', 'university_files');
+function fictional_scripts() {
+	//Fix reload for style.css
+	wp_enqueue_style( 'fictional-style', get_stylesheet_uri(), NULL, microtime());
+	
+		wp_enqueue_style( 'fictional-contnt-sidebar', get_template_directory_uri() . '/layouts/content-sidebar.css' );
+
+		wp_enqueue_style( 'fictional-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+		
+		wp_enqueue_style( 'fictional-google-fonts', 'https://fonts.googleapis.com/css?family=Lato:400,100,700,900,900italic,400italic|PT+Serif+Caption');
+	
+		wp_enqueue_style( 'fictional-fontawsome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+
+    wp_enqueue_script( 'fictional-bundled', get_template_directory_uri() . '/js/scripts-bundled.js', NULL, microtime(), true );
+
+
+    wp_enqueue_script( 'fictional-superfish', get_template_directory_uri() . '/js/superfish.js', array('jquery'), '20140328', true );
+
+
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'fictional_scripts' );
 
 // Set the content width based on the theme's design and stylesheet.
 
@@ -128,32 +161,7 @@ function anaximander_header_style() {
 		return;
 	// If we get this far, we have custom styles. Let's do this.
 	?>
-	<style type="text/css">
-	<?php
-		// Has the text been hidden?
-		if ( 'blank' == $text_color ) :
-	?>
-		#site-title,
-		#site-description {
-			position: absolute !important;
-			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-			clip: rect(1px, 1px, 1px, 1px);
-		}
-	<?php
-		// If the user has set a custom color for the text use that
-		else :
-	?>
-		#site-title a,
-		#site-description,
-		#access a,
-		#access li.current_page_item > a, 
-		#access li.current_page_parent > a, 
-		#access li.current-page-ancestor > a, 
-		#access li.current-post-ancestor > a {
-			color: #<?php echo $text_color; ?> !important;
-		}
-	<?php endif; ?>
-	</style>
+
 	<?php
 	
 }
@@ -183,68 +191,7 @@ function anaximander_admin_header_style() {
 	<?php	
 	}?>
 
-	<style type="text/css">
-		#site-header {
-			background: #ff4800;
-			position: relative;
-			max-width: 1040px;
-		}
 
-		#header_margin {
-			padding: 40px 50px;
-		}
-
-		#header_image img {
-			display: block;
-			width: 100%;
-			height: auto;
-		}
-		
-		#header_image_margin {
-			display: none;
-		}
-
-		#site-title {
-			font-size: 2.5em;
-			font-weight: 700;
-			margin: 0;
-			font-family: 'Open Sans Condensed';
-			text-transform: uppercase;
-			z-index: 10;
-		}
-
-		#site-title a:link,
-		#site-title a:visited,
-		#site-title a:hover,
-		#site-title a:focus {
-			text-decoration: none;
-			color: #fff;
-		}
-
-		#site-description {
-			font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-			font-size: 1em;
-			font-weight: normal;
-			text-transform: uppercase;
-			color: #fff;
-			margin: 0.2em 0;
-		}
-
-		/* Conditional if header image is present */
-
-		#header-title.header-image-true {
-			width: 100%;
-		}
-		<?php
-			// If the user has set a custom color for the text use that
-			if ( get_header_textcolor() != get_theme_support( 'custom-header', 'default-text-color' ) ) :
-		?>
-			#site-title a,
-			#site-description {
-				color: #<?php echo get_header_textcolor(); ?>!important;
-			}
-		<?php endif; ?>
-	</style>
 <?php
 }
 endif; // anaximander_admin_header_style
